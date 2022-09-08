@@ -36,7 +36,7 @@ public:
         }
 
         // Create a periodic timer of 1 second
-        //timer_ = create_wall_timer(1s, std::bind(&RobotNode::timerCallback, this));
+        timer_ = create_wall_timer(1s, std::bind(&RobotNode::timerCallback, this));
     }
 
     // Destructor of the Node
@@ -61,6 +61,6 @@ public:
 int main(int argc, char const *argv[]){
     rclcpp::init(argc, argv);
     auto robot_node = std::make_shared<RobotNode>("robot_node");
-    //rclcpp::spin(robot_node);
+    rclcpp::spin(robot_node);
     return 0;
 }
