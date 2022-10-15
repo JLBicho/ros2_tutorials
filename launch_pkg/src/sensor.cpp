@@ -12,7 +12,7 @@ public:
         );
         // Create a publisher for the sensor data
         sensor_pub_ = create_publisher<std_msgs::msg::Int16>(
-            "/sensor_data", 
+            "sensor_data", 
             rclcpp::SystemDefaultsQoS()
         );
     }

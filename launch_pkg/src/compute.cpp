@@ -8,12 +8,12 @@ public:
     ComputeNode(): Node("compute_node"){
         // Declare a subscription for sensor data
         sensor_sub_ = create_subscription<std_msgs::msg::Int16>(
-            "/sensor_data",rclcpp::SystemDefaultsQoS(), 
+            "sensor_data",rclcpp::SystemDefaultsQoS(), 
             std::bind(&ComputeNode::sensorCallback, this, std::placeholders::_1)
         );
         // Declare a publisher for motors command
         cmd_vel_pub_ = create_publisher<geometry_msgs::msg::Twist>(
-            "/cmd_vel", 
+            "cmd_vel", 
             rclcpp::SystemDefaultsQoS()
         );
     }

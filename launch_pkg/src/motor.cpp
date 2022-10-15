@@ -7,7 +7,7 @@ public:
     MotorNode(): Node("motor_node"){
         // Create a subscription for the command
         cmd_vel_sub_ = create_subscription<geometry_msgs::msg::Twist>(
-            "/cmd_vel",rclcpp::SystemDefaultsQoS(), 
+            "cmd_vel",rclcpp::SystemDefaultsQoS(), 
             std::bind(&MotorNode::cmdVelCallback, this, std::placeholders::_1)
         );
     }
