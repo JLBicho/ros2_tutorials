@@ -1,5 +1,7 @@
+# launch module includes elements to launch all types of processes and actions
 from launch import LaunchDescription
 from launch.actions import ExecuteProcess
+# launch_ros module includes elements to launch ROS 2 processes and actions
 from launch_ros.actions import Node
 
 # This function is always needed
@@ -22,6 +24,8 @@ def generate_launch_description():
         executable="motor_node"
     )
 
+    # This node is from another package
+    # And we are configuring it with parameters
     robot_node = Node(
         namespace="core",
         package="params_pkg",
@@ -38,7 +42,7 @@ def generate_launch_description():
     ld = [compute_node,
           sensor_node,
           motor_node,
-          robot_node]
-          #foxglove_studio]
+          robot_node,
+          foxglove_studio]
 
     return LaunchDescription(ld)
