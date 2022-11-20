@@ -1,0 +1,154 @@
+{
+  "configById": {
+    "Publish!o5nlbh": {
+      "topicName": "/object_detected",
+      "datatype": "std_msgs/msg/Bool",
+      "buttonText": "Publish",
+      "buttonTooltip": "",
+      "buttonColor": "#00A871",
+      "advancedView": true,
+      "value": "{\n  \"data\": true\n}"
+    },
+    "RosOut!2p9ghtp": {
+      "searchTerms": [
+        "tf_listener"
+      ],
+      "minLogLevel": 2
+    },
+    "RawMessages!3fagkxe": {
+      "diffEnabled": false,
+      "diffMethod": "custom",
+      "diffTopicPath": "",
+      "showFullMessageForDiff": false,
+      "topicPath": "/tf"
+    },
+    "RawMessages!2vlq8nn": {
+      "diffEnabled": false,
+      "diffMethod": "custom",
+      "diffTopicPath": "",
+      "showFullMessageForDiff": false,
+      "topicPath": "/tf_static",
+      "expansion": {
+        "header~0~transforms": "c"
+      }
+    },
+    "3D!3wavhd1": {
+      "cameraState": {
+        "distance": 10.831031941031295,
+        "perspective": false,
+        "phi": 0.3651688601943065,
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "targetOffset": [
+          1.7195822882287237,
+          0.3687044891990902,
+          -2.0895560780929735e-16
+        ],
+        "targetOrientation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "thetaOffset": 90.64296548981267,
+        "fovy": 45,
+        "near": 0.5,
+        "far": 5000
+      },
+      "followMode": "follow-pose",
+      "scene": {
+        "enableStats": true,
+        "transforms": {
+          "editable": false,
+          "showLabel": true,
+          "axisScale": 4.55491590949056,
+          "lineWidth": 3.5682068654084715,
+          "labelSize": 0.34824624306515595
+        },
+        "ignoreColladaUpAxis": false,
+        "labelScaleFactor": 0.6708105763477753,
+        "meshUpAxis": "y_up"
+      },
+      "transforms": {
+        "frame:head": {
+          "xyzOffset": [
+            0,
+            0,
+            -0.05
+          ],
+          "rpyOffset": [
+            0,
+            0,
+            0
+          ]
+        },
+        "frame:base_link": {
+          "visible": true
+        },
+        "frame:odom": {
+          "visible": true
+        },
+        "frame:head_link": {
+          "visible": true
+        },
+        "frame:left_wheel_link": {
+          "visible": false
+        },
+        "frame:right_wheel_link": {
+          "visible": false
+        }
+      },
+      "topics": {
+        "/robot_description": {
+          "visible": false
+        },
+        "/initialpose": {
+          "visible": false
+        },
+        "/goal_pose": {
+          "visible": false
+        }
+      },
+      "layers": {},
+      "publish": {
+        "type": "pose",
+        "poseTopic": "/move_base_simple/goal",
+        "pointTopic": "/clicked_point",
+        "poseEstimateTopic": "/initialpose",
+        "poseEstimateXDeviation": 0.5,
+        "poseEstimateYDeviation": 0.5,
+        "poseEstimateThetaDeviation": 0.26179939
+      },
+      "followTf": "base_link"
+    }
+  },
+  "globalVariables": {},
+  "userNodes": {},
+  "linkedGlobalVariables": [],
+  "playbackConfig": {
+    "speed": 1
+  },
+  "layout": {
+    "direction": "row",
+    "first": {
+      "first": "Publish!o5nlbh",
+      "second": "RosOut!2p9ghtp",
+      "direction": "column",
+      "splitPercentage": 44.68503937007874
+    },
+    "second": {
+      "direction": "row",
+      "first": {
+        "first": "RawMessages!3fagkxe",
+        "second": "RawMessages!2vlq8nn",
+        "direction": "column",
+        "splitPercentage": 48.22834645669291
+      },
+      "second": "3D!3wavhd1"
+    },
+    "splitPercentage": 38.79079721776351
+  }
+}
