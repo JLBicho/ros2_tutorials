@@ -1,5 +1,6 @@
 #include <rclcpp/rclcpp.hpp>
-#include "geometry_msgs/msg/transform_stamped.hpp"
+#include "geometry_msgs/msg/pose_stamped.hpp"
+#include "tf2_geometry_msgs/tf2_geometry_msgs.h"
 #include "tf2/LinearMath/Quaternion.h"
 #include "tf2/exceptions.h"
 #include "tf2_ros/transform_listener.h"
@@ -7,31 +8,33 @@
 
 class TfListener : public rclcpp::Node{
 private:
-    void timerCallback(){
+    void poseCallback(const geometry_msgs::msg::PoseStamped::SharedPtr msg){
         // IMPORTANT 
         // Use "try-catch" semantics to avoid problems when a transform does not exists
         try{
+            pose_in_ = *msg;
             // LookupTransform will operate all the matrices between the target_frame and the source_frame
-            transf_ = tf2_buffer_->lookupTransform(
-                "base_link", "object_link", tf2::TimePointZero);
-            RCLCPP_INFO(get_logger(),"Transform between 'base_link'->'object_link' is:\n Position x,y,z = %.1f,%.1f,%.1f",
-                transf_.transform.translation.x,
-                transf_.transform.translation.y,
-                transf_.transform.translation.z);
+            tf2_buffer_->transform<geometry_msgs::msg::PoseStamped>(pose_in_, pose_out_, "arm_link", 
+                tf2::Duration(std::chrono::seconds(1)));
+            RCLCPP_INFO(get_logger(),"Object pose in 'arm_link' is:\n x,y,z = %.1f,%.1f,%.1f",
+                pose_out_.pose.position.x,
+                pose_out_.pose.position.y,
+                pose_out_.pose.position.z);
         }
         catch (const tf2::TransformException & ex){
-            RCLCPP_WARN(get_logger(),"Could not transform between 'base_link'->'object_link'");
+            RCLCPP_WARN(get_logger(),"Could not find object position in 'arm_link' frame.");
             return;
         }
     }
     // Timer
-    rclcpp::TimerBase::SharedPtr timer_;
+    rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr pose_sub_;
     // Declare the listener
     std::shared_ptr<tf2_ros::TransformListener> tf2_listener_;
     // Declare the buffer
     std::shared_ptr<tf2_ros::Buffer> tf2_buffer_;
-    // Transform message received
-    geometry_msgs::msg::TransformStamped transf_;
+    // Pose in destination frame
+    geometry_msgs::msg::PoseStamped pose_in_;
+    geometry_msgs::msg::PoseStamped pose_out_;
 
 public:
     TfListener(const std::string & name):
@@ -41,12 +44,11 @@ public:
         // Make a transform listener of the buffer
         tf2_listener_ = std::make_unique<tf2_ros::TransformListener>(*tf2_buffer_);
         // Inicialize the timer that will check the transforms each second.
-        timer_ = create_wall_timer(std::chrono::seconds(1), 
-            std::bind(&TfListener::timerCallback, this));
+        pose_sub_ = create_subscription<geometry_msgs::msg::PoseStamped>
+            ("/detected_object",10,
+            std::bind(&TfListener::poseCallback, this, std::placeholders::_1));
     }
-    ~TfListener(){
-
-    }
+    ~TfListener(){}
 };
 
 int main(int argc, char const *argv[]){

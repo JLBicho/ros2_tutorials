@@ -22,22 +22,28 @@ find_package(std_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 
 set(dependencies
 std_msgs
 tf2
 geometry_msgs
 tf2_ros
+tf2_geometry_msgs
 )
 
 add_executable(tf_broadcaster src/tf_broadcaster.cpp)
 ament_target_dependencies(tf_broadcaster ${dependencies})
 add_executable(tf_listener src/tf_listener.cpp)
 ament_target_dependencies(tf_listener ${dependencies})
+add_executable(sensor_node src/sensor.cpp)
+ament_target_dependencies(sensor_node ${dependencies})
+
 
 install(TARGETS
   tf_listener
   tf_broadcaster
+  sensor_node
 DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY launch 

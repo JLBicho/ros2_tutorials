@@ -1,19 +1,17 @@
 {
   "configById": {
     "Publish!o5nlbh": {
-      "topicName": "/object_detected",
-      "datatype": "std_msgs/msg/Bool",
+      "topicName": "/cmd_vel",
+      "datatype": "geometry_msgs/Twist",
       "buttonText": "Publish",
       "buttonTooltip": "",
       "buttonColor": "#00A871",
       "advancedView": true,
-      "value": "{\n  \"data\": true\n}"
+      "value": "{\n  \"linear\": {\n    \"x\": 1,\n    \"y\": 1,\n    \"z\": 0\n  },\n  \"angular\": {\n    \"x\": 0,\n    \"y\": 0,\n    \"z\": 0\n  }\n}"
     },
-    "RosOut!2p9ghtp": {
-      "searchTerms": [
-        "tf_listener"
-      ],
-      "minLogLevel": 2
+    "RosOut!1iz5kjk": {
+      "searchTerms": [],
+      "minLogLevel": 1
     },
     "RawMessages!3fagkxe": {
       "diffEnabled": false,
@@ -34,18 +32,19 @@
     },
     "3D!3wavhd1": {
       "cameraState": {
-        "distance": 10.831031941031295,
         "perspective": false,
+        "distance": 10.831031941028597,
         "phi": 0.3651688601943065,
+        "thetaOffset": 90.27785392850286,
+        "targetOffset": [
+          1.5796739113967913,
+          -0.20119724635271527,
+          -2.0880804605368025e-16
+        ],
         "target": [
           0,
           0,
           0
-        ],
-        "targetOffset": [
-          1.7195822882287237,
-          0.3687044891990902,
-          -2.0895560780929735e-16
         ],
         "targetOrientation": [
           0,
@@ -53,7 +52,6 @@
           0,
           1
         ],
-        "thetaOffset": 90.64296548981267,
         "fovy": 45,
         "near": 0.5,
         "far": 5000
@@ -110,9 +108,39 @@
         },
         "/goal_pose": {
           "visible": false
+        },
+        "/detected_object": {
+          "visible": true,
+          "type": "arrow",
+          "axisScale": 1.2110365985079725,
+          "color": "#be6bff"
         }
       },
-      "layers": {},
+      "layers": {
+        "75b9c4bf-c603-4684-9256-a0587c15cada": {
+          "visible": true,
+          "frameLocked": true,
+          "label": "Grid",
+          "instanceId": "75b9c4bf-c603-4684-9256-a0587c15cada",
+          "layerId": "foxglove.Grid",
+          "size": 10.926080284728402,
+          "divisions": 10.085300667219904,
+          "lineWidth": 1,
+          "color": "#248eff",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "order": 1,
+          "frameId": "base_link"
+        }
+      },
       "publish": {
         "type": "pose",
         "poseTopic": "/move_base_simple/goal",
@@ -135,9 +163,9 @@
     "direction": "row",
     "first": {
       "first": "Publish!o5nlbh",
-      "second": "RosOut!2p9ghtp",
+      "second": "RosOut!1iz5kjk",
       "direction": "column",
-      "splitPercentage": 44.68503937007874
+      "splitPercentage": 45
     },
     "second": {
       "direction": "row",
@@ -147,8 +175,9 @@
         "direction": "column",
         "splitPercentage": 48.22834645669291
       },
-      "second": "3D!3wavhd1"
+      "second": "3D!3wavhd1",
+      "splitPercentage": 55.41678911972051
     },
-    "splitPercentage": 38.79079721776351
+    "splitPercentage": 34.884965222043874
   }
 }
