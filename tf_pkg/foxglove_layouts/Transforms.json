@@ -1,45 +1,29 @@
 {
   "configById": {
-    "Publish!o5nlbh": {
-      "topicName": "/cmd_vel",
-      "datatype": "geometry_msgs/Twist",
-      "buttonText": "Publish",
-      "buttonTooltip": "",
-      "buttonColor": "#00A871",
-      "advancedView": true,
-      "value": "{\n  \"linear\": {\n    \"x\": 1,\n    \"y\": 1,\n    \"z\": 0\n  },\n  \"angular\": {\n    \"x\": 0,\n    \"y\": 0,\n    \"z\": 0\n  }\n}"
-    },
-    "RosOut!1iz5kjk": {
-      "searchTerms": [],
-      "minLogLevel": 1
-    },
-    "RawMessages!3fagkxe": {
+    "RawMessages!29m2ffi": {
       "diffEnabled": false,
       "diffMethod": "custom",
       "diffTopicPath": "",
       "showFullMessageForDiff": false,
       "topicPath": "/tf"
     },
-    "RawMessages!2vlq8nn": {
+    "RawMessages!3x9b0u4": {
       "diffEnabled": false,
       "diffMethod": "custom",
       "diffTopicPath": "",
       "showFullMessageForDiff": false,
-      "topicPath": "/tf_static",
-      "expansion": {
-        "header~0~transforms": "c"
-      }
+      "topicPath": "/tf_static"
     },
     "3D!3wavhd1": {
       "cameraState": {
-        "perspective": false,
-        "distance": 10.831031941028597,
-        "phi": 0.3651688601943065,
-        "thetaOffset": 90.27785392850286,
+        "perspective": true,
+        "distance": 5.017922111856088,
+        "phi": 66.09346789365298,
+        "thetaOffset": 73.06577587842088,
         "targetOffset": [
-          1.5796739113967913,
-          -0.20119724635271527,
-          -2.0880804605368025e-16
+          0.6562079688555178,
+          -0.8936607595614816,
+          -2.0926720579838547e-16
         ],
         "target": [
           0,
@@ -60,7 +44,7 @@
       "scene": {
         "enableStats": true,
         "transforms": {
-          "editable": false,
+          "editable": true,
           "showLabel": true,
           "axisScale": 4.55491590949056,
           "lineWidth": 3.5682068654084715,
@@ -97,6 +81,18 @@
         },
         "frame:right_wheel_link": {
           "visible": false
+        },
+        "frame:sensor_link": {
+          "xyzOffset": [
+            0.637551724393037,
+            0,
+            0
+          ],
+          "rpyOffset": [
+            0,
+            0,
+            44.83294758548513
+          ]
         }
       },
       "topics": {
@@ -109,22 +105,23 @@
         "/goal_pose": {
           "visible": false
         },
-        "/detected_object": {
-          "visible": true,
-          "type": "arrow",
-          "axisScale": 1.2110365985079725,
-          "color": "#be6bff"
+        "/scan": {
+          "visible": false,
+          "colorField": "intensity",
+          "colorMode": "flat",
+          "colorMap": "turbo",
+          "pointSize": 4.726934793261838
         }
       },
       "layers": {
-        "75b9c4bf-c603-4684-9256-a0587c15cada": {
+        "2c6457b2-0b6d-4014-ae4f-462339a18539": {
           "visible": true,
           "frameLocked": true,
           "label": "Grid",
-          "instanceId": "75b9c4bf-c603-4684-9256-a0587c15cada",
+          "instanceId": "2c6457b2-0b6d-4014-ae4f-462339a18539",
           "layerId": "foxglove.Grid",
-          "size": 10.926080284728402,
-          "divisions": 10.085300667219904,
+          "size": 10,
+          "divisions": 10,
           "lineWidth": 1,
           "color": "#248eff",
           "position": [
@@ -137,8 +134,7 @@
             0,
             0
           ],
-          "order": 1,
-          "frameId": "base_link"
+          "order": 1
         }
       },
       "publish": {
@@ -151,6 +147,26 @@
         "poseEstimateThetaDeviation": 0.26179939
       },
       "followTf": "base_link"
+    },
+    "Teleop!38st3w5": {
+      "topic": "/cmd_vel",
+      "publishRate": 1,
+      "upButton": {
+        "field": "linear-x",
+        "value": 1.9160254399524117
+      },
+      "downButton": {
+        "field": "linear-x",
+        "value": -1.8000000000000007
+      },
+      "leftButton": {
+        "field": "linear-y",
+        "value": 2.388244392372185
+      },
+      "rightButton": {
+        "field": "linear-y",
+        "value": -2.3656854249492385
+      }
     }
   },
   "globalVariables": {},
@@ -162,22 +178,14 @@
   "layout": {
     "direction": "row",
     "first": {
-      "first": "Publish!o5nlbh",
-      "second": "RosOut!1iz5kjk",
-      "direction": "column",
-      "splitPercentage": 45
+      "first": "RawMessages!29m2ffi",
+      "second": "RawMessages!3x9b0u4",
+      "direction": "column"
     },
     "second": {
-      "direction": "row",
-      "first": {
-        "first": "RawMessages!3fagkxe",
-        "second": "RawMessages!2vlq8nn",
-        "direction": "column",
-        "splitPercentage": 48.22834645669291
-      },
+      "first": "Teleop!38st3w5",
       "second": "3D!3wavhd1",
-      "splitPercentage": 55.41678911972051
-    },
-    "splitPercentage": 34.884965222043874
+      "direction": "column"
+    }
   }
 }

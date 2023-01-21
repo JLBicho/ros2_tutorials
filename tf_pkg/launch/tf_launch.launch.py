@@ -30,8 +30,8 @@ def generate_launch_description():
     # Add the nodes and the process to the LaunchDescription list
     ld = [robot_state_publisher,
           tf_broadcaster,
-          tf_listener,
-          sensor_node,
+        #   tf_listener,
+        #   sensor_node,
           foxglove_studio,
           rosbridge]
 

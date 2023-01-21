@@ -36,6 +36,25 @@
             </geometry>
         </collision>
     </link>
+
+    <link name="arm_base_link">
+        <visual name="">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.15 0.1 0.1"/>
+            </geometry>
+            <material name="">
+                <color rgba="0.3 0.2 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.15 0.1 0.1"/>
+            </geometry>
+        </collision>
+    </link>
+    
     <!-- A joint represents the transform between two frames (links) 
     In this case, it is a fixed transform that will not change -->
     <joint name="sensor_joint" type="fixed">
@@ -43,5 +62,11 @@
         <parent link="base_link"/>
         <child link="sensor_link"/>
     </joint>
+    <joint name="arm_joint" type="fixed">
+        <origin xyz="1 -1 0.0" rpy="0.0 0.0 0.524"/>
+        <parent link="base_link"/>
+        <child link="arm_base_link"/>
+    </joint>
+    
     
 </robot>
